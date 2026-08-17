@@ -1,0 +1,26 @@
+/public/storage
+/public/itemImage
+/public/img/challan
+/public/img/update_request
+/public/img/requestedProduct
+/public/img/NID
+/public/itemImageX
+/public/barcode
+/public/.htaccess
+/public/react/app.js
+/storage/*.key
+/.idea
+/.idea/workspace.xml
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+package-lock.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+composer.lock
+node_modules
+/node_modules_old
+/vendor/
+# /resources/views/partials/backend/sidebar.blade.php

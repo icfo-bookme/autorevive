@@ -1,0 +1,184 @@
+
+    /* responsive loader */
+    @media (min-width: 768px) {
+        #loader {
+            display: none;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding: 2px;
+        }
+    }
+
+    @media(max-width: 576px) {
+        #loader {
+            display: none;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 40%;
+            padding: 2px;
+        }
+    }
+
+    /* search */
+    .ui-state-active h4,
+    .ui-state-active h4:visited {
+        color: #26004d;
+    }
+
+    .ui-autocomplete {
+        width: 450px;
+    }
+
+    @media (min-width: 768px) {
+        .ui-autocomplete {
+            width: 450px;
+        }
+        #ui-id-1{
+            background: #FFFFFF;
+            z-index: 10000;
+        }
+        /* #ui-id-2{
+            background: #FFFFFF !important;
+            z-index: 10000 !important;
+        } */
+    }
+
+    @media(max-width: 576px) {
+        .text-dot{
+            width: 200px !important;
+        }
+        .ui-autocomplete {
+            width: 90%;
+        }
+        #ui-id-2{
+            background: #FFFFFF !important;
+            z-index: 999 !important;
+            left: 15px !important;
+        }
+        .list_item_container {
+            width: 500px;
+            height: 50px;
+            float: left;
+            margin-left: 0 !important;
+        }
+        .list_item_container h4{
+            color: #333 !important;
+            font-weight: 400 !important;
+            padding-top: 14px !important;
+            font-size: 12px !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+            
+        }
+        .image {
+            width: 15%;
+            float: left;
+            padding: 10px;
+        }
+    
+        .image img {
+            width: 90!important;
+            height: 35px !important;
+            object-fit: contain !important;
+        }
+        .label {
+            width: 85%;
+            float: left;
+            white-space: wrap !important;
+            overflow: hidden;
+            color: rgb(124, 77, 255);
+            text-align: left;
+        }
+    
+        
+        
+    }
+
+    .ui-menu-item {
+        height: 60px;
+        border: 1px solid #ececf9;
+    }
+
+    .ui-widget-content .ui-state-active {
+        background-color: white !important;
+        border: none !important;
+    }
+    #ui-id-1{
+        background: #FFFFFF;
+        z-index: 10000;
+    }
+    .list_item_container {
+        width: 740px;
+        height: 60px;
+        float: left;
+        margin-left: 20px;
+    }
+    .list_item_container h4{
+        color: #333 !important;
+        font-weight: 200;
+        padding-top: 1.2rem;
+        
+    }
+
+    /* .ui-widget-content .ui-state-active .list_item_container {
+    background-color: #f5f5f5;
+} */
+
+    .image {
+        width: 15%;
+        float: left;
+        padding: 10px;
+    }
+
+    .image img {
+        width: 80px;
+        height: 60px;
+    }
+
+    .label {
+        width: 85%;
+        float: right;
+        white-space: nowrap;
+        overflow: hidden;
+        color: rgb(124, 77, 255);
+        text-align: left;
+    }
+
+    input:focus {
+        background-color: #f5f5f5;
+    }
+
+    @media(min-width: 768px){
+        .text-dot{
+            width: 400px !important;
+        }
+    }
+    
+
+    @media only screen and (max-width: 991px) and (min-width: 602px){
+        .image img{
+            width: 40px !important;
+            height: 40px !important;
+        }
+        .btn__cart__float{
+            width: 45px !important;
+            height: 45px !important;
+        }
+        .ctrlq.fb-button{
+            width: 45px !important;
+            height: 45px !important;
+        }
+        .btn__cart__float i{
+            font-size: 18px !important;
+        }
+        .cart_count_two{
+            width: 20px !important;
+            height: 20px !important;
+            line-height: 21px !important;
+        }
+    }

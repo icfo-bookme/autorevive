@@ -1,0 +1,93 @@
+@extends('layouts.backend.master')
+@section('content')
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header"><i class="fa fa-table"></i> Sales Log View</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="saleLogsTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+
+                                {{-- <th>#</th> --}}
+                                <th>Invoice Id</th>
+                                {{-- <th>Sales Id</th> --}}
+                                <th>Customer Name</th>
+                                <th>Phone Number</th>
+                                {{-- <th>Email</th> --}}
+                                <th>City</th>
+                                {{-- <th>Price</th>
+                                <th>Cost Price</th> --}}
+                                <th>Payment Due</th>
+                                {{-- <th>Is_Due_Paid</th> --}}
+                                <th>Order Notes</th>
+                                {{-- <th>Status</th> --}}
+                                {{-- <th>Soft Delete</th> --}}
+                                {{-- <th>Created By</th> --}}
+                                <th>Advanced Payment</th>
+                                <th>Collected Payment</th>
+                                <th>Discount Amount</th>
+                                <th>Sales by</th>
+                                <th>updated by</th>
+                                <th>Action</th>
+                                
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                       
+                            <script>
+
+                                $(document).ready(function () {
+                                    const csrf_token = "{{ csrf_token() }}";
+                                    console.log(csrf_token);
+                                        // #### DATATABLE
+                                        var dataTable = $('#saleLogsTable').DataTable({
+                                            responsive: true,
+                                            lengthMenu: [5, 10, 25, 50, 100, 500],
+                                            pageLength: 10,
+                                            language: {
+                                                'lengthMenu': 'Display _MENU_',
+                                            },
+                                            searchDelay: 500,
+                                            processing: true,
+                                            serverSide: true,
+                                            ajax: {
+                                                url: route('sale_logs.list') ,
+                                                data: function (data) {
+                                                   data._token = csrf_token;
+                                                },
+                                                type: 'post',
+                                            },
+                                            columns: [
+                                                // {data: 'id', name: 'id',"orderable": true, "searchable": true, width: "10%"},
+                                                {data: 'order_id', name: 'order_id',"orderable": true, "searchable": true, width: "10%"},
+                                                // {data: 'sales_id', name: 'sales_id',"orderable": true, "searchable": true, width: "10%"},
+                                                {data: 'customer_name', name: 'customer_name', "orderable": false, searchable: false, width:"10%"},
+                                                {data: 'phone_number', name: 'phone_number', "orderable": true, "searchable": true, width: "10%"},
+                                                // {data: 'email', name: 'email', "orderable": true, "searchable": true, width: "10%"},
+                                                {data: 'city', name: 'city', "orderable": true, "searchable": true, width: "10%"},
+                                                // {data: 'price', name: 'price', "orderable": false, searchable: true, width: "10%"},
+                                                // {data: 'cost_price', name: 'cost_price', "orderable": false, searchable: false, width: "10%"},
+                                                {data: 'payment_due', name: 'payment_due', "orderable": false, searchable: false, width: "10%"},
+                                                // {data: 'is_due_paid', name: 'is_due_paid', "orderable": false, searchable: false, width: "10%"},
+                                                {data: 'order_notes', name: 'order_notes', "orderable": false, searchable: false, width: "10%"},
+                                                // {data: 'status', name: 'status', "orderable": false, searchable: false, width: "10%"},
+                                                // {data: 'soft_delete', name: 'soft_delete', "orderable": false, searchable: false, width: "10%"},
+                                                // {data: 'created_by', name: 'created_by', "orderable": false, searchable: false, width: "10%"},
+                                                {data: 'discount_amount', name: 'discount_amount', "orderable": false, searchable: false, width: "10%"},
+                                                {data: 'advance_payment', name: 'advance_payment', "orderable": false, searchable: false, width: "10%"},
+                                                {data: 'collected_payment', name: 'collected_payment', "orderable": false, searchable: false, width: "10%"},
+                                                {data: 'sales_updated_by', name: 'sales_updated_by', "orderable": false, searchable: false, width: "10%"},
+                                                {data: 'created_by', name: 'created_by', "orderable": false, searchable: false, width: "10%"},
+                                                {data: 'action', name: 'action', "orderable": false, searchable: false, width: "10%"},
+                                            ],
+                                            dom: '<"top-toolbar row"<"top-left-toolbar col-md-9"lB><"top-right-toolbar col-md-3"f>>rt<"bottom-toolbar"<"bottom-left-toolbar"i><"bottom-right-toolbar"p>>'
+                                        });
+                                });
+                            </script>
+@endsection

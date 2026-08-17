@@ -1,0 +1,17 @@
+partials/footer.blade.php:81:<script src="{{asset('styles/bootstrap4/popper.js')}}"></script>
+shop/about.blade.php:441:<script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+shop/accountSettings.blade.php:461:     <script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+shop/checkOut.blade.php:635:  {{-- <script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+shop/checkOutOld.blade.php:539:  <script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+shop/contact.blade.php:454:    {{-- <script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+shop/index.blade.php:240:<script src="{{asset('styles/bootstrap4/popper.js')}}"></script>
+shop/index25-11-2020.blade.php:529:<script src="{{asset('styles/bootstrap4/popper.js')}}"></script>
+shop/indexOld.blade.php:1588:<script src="{{asset('styles/bootstrap4/popper.js')}}"></script>
+shop/indexOld.blade.php:1608:<script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+shop/index_08.11.2020.blade.php:1237:<script src="{{asset('styles/bootstrap4/popper.js')}}"></script>
+shop/index_08.11.2020.blade.php:1255:<script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+shop/myAccount.blade.php:507:<script src="{{asset('styles/bootstrap4/popper.js')}}"></script>
+shop/shop.blade.php:816:{{-- <script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+shop/shopByCategoryOld-23.11.2020.blade.php:1000:{{-- <script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+shop/shopByCategoryOld.blade.php:690:<script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+shop/singleProductDetails-18.11.2020.blade.php:1254:<script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>

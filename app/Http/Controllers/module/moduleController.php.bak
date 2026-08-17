@@ -1,0 +1,359 @@
+<?php
+
+namespace App\Http\Controllers\module;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use App\module\ModuleModel;
+use App\module\ModuleDetailsModel;
+use Illuminate\Support\Facades\DB;
+
+class moduleController extends Controller
+{
+
+    /**
+     * @name modulesView
+     * @role Show all modules view
+     * @param
+     * @return view with compact array
+     *
+     */
+    // public function modulesView()
+    // {
+    //     $modules = ModuleModel::all('id', 'name', 'created_by', 'soft_delete')->where('soft_delete', 0);
+
+    //     $data = [
+    //         'modules' => $modules
+    //     ];
+    //     return view('admin.module.modulesView', $data);
+    // }
+
+    /**
+     * @name moduleInsert
+     * @role module insert view
+     * @param
+     * @return view
+     *
+     */
+    // public function moduleInsertView()
+    // {
+    //     return view('admin.module.moduleInsert');
+    // }
+
+
+
+    /**
+     * @name moduleSetup
+     * @role module Setup view
+     * @param
+     * @return view with compact array
+     *
+     */
+    // public function moduleSetupView()
+    // {
+    //     $modules = ModuleModel::all('id', 'name', 'soft_delete')->where('soft_delete', 0);
+
+    //     $data = [
+    //         'modules' => $modules
+    //     ];
+
+    //     return view('admin.module.moduleSetup', $data);
+    // }
+
+
+    /**
+     * @name moduleRouteView
+     * @role module route assign view
+     * @param
+     * @return view with compact array
+     *
+     */
+
+    // public function moduleRouteView()
+    // {
+
+    //     $modules = ModuleModel::all('id', 'name', 'soft_delete')->where('soft_delete', 0);
+    //     $modulesRoutes = ModuleDetailsModel::select('id', 'module_id', 'created_by', 'route', 'soft_delete')
+    //                                         ->where('soft_delete', 0)
+    //                                         ->with('module')
+    //                                         ->get();
+
+                                          
+    //     $data = [
+    //         'modulesRoutes'     => $modulesRoutes,
+    //         'modules'           => $modules
+    //     ];
+    //     return view('admin.module.moduleRouteView', $data);
+    // }
+
+    /**
+     * @name moduleInsertAjax
+     * @role insert module record into database
+     * @param Request from array
+     * @return view with compact array
+     *
+     */
+
+    // public function moduleInsertAjax(Request $request)
+    // {
+    //     $userName = Auth::user()->first_name;
+    //     $defaultValue = 0;
+
+    //     $attributeNames = array(
+    //         'name'              => $request->moduleName,
+    //         'created_by'        => $userName,
+    //         'soft_delete'       => $defaultValue
+    //     );
+
+    //     $validator = Validator::make($attributeNames, [
+    //         'name'              => 'required',
+    //         'created_by'        => 'required',
+    //         'soft_delete'       => 'required'
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
+    //     } else {
+    //         //work goes here
+    //         ModuleModel::create($attributeNames);
+    //         return response()->json("Success");
+    //     }
+    // }
+
+
+    /**
+     * @name getModule
+     * @role get specific module from database
+     * @param Request from array
+     * @return view with compact array
+     *
+     */
+
+    // public function getModule(Request $request)
+    // {
+    //     $id = $request->id;
+    //     $module = ModuleModel::findOrFail($id);
+    //     return response()->json($module);
+    // }
+
+
+    /**
+     * @name moduleDetailsInsertAjax
+     * @role insert module details into database
+     * @param Request from array
+     * @return view with compact array
+     *
+     */
+    // public function moduleDetailsInsertAjax(Request $request)
+    // {
+    //     $userName = Auth::user()->first_name;
+    //     $defaultValue = 0;
+
+    //     $attributeNames = array(
+    //         'module_id'         => $request->module,
+    //         'route'             => $request->route,
+    //         'created_by'        => $userName,
+    //         'soft_delete'       => $defaultValue
+    //     );
+
+    //     $validator = Validator::make($attributeNames, [
+    //         'module_id'         => 'required',
+    //         'route'             => 'required',
+    //         'created_by'        => 'required',
+    //         'soft_delete'       => 'required'
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
+    //     } else {
+    //         //work goes here
+
+    //         if (!ModuleDetailsModel::where('module_id', $request->module)
+    //             ->where('route', $request->route)
+    //             ->where('soft_delete', 0)
+    //             ->exists()) {
+    //             ModuleDetailsModel::create($attributeNames);
+    //             return response()->json("Success");
+    //         } else {
+    //             return response()->json(array('warning' => 'Record Already Exists!'));
+    //         }
+    //     }
+    // }
+
+    /**
+     * @name moduleUpdatAjax
+     * @role update module record into database
+     * @param Request from array
+     * @return view with compact array
+     *
+     */
+
+    // public function moduleUpdatAjax(Request $request)
+    // {
+    //     $id = $request->id;
+
+    //     $module = ModuleModel::findOrFail($id);
+    //     $attributeNames = array(
+    //         'name'          => request()->moduleName,
+    //     );
+
+    //     //dd($attributeNames);
+
+    //     $validator = Validator::make($attributeNames, [
+    //         'name'          => 'required',
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
+    //     } else {
+
+    //         $module->update($attributeNames);
+    //         return response()->json("Updated!");
+    //     }
+    // }
+
+    /**
+     * @name modulesDeleteAjax
+     * @role soft delete module record into database
+     * @param Request from array
+     * @return view with compact array
+     *
+     */
+
+
+    // public function modulesDeleteAjax(Request $request)
+    // {
+    //     $id = $request->module_id;
+    //     // dd($id);
+    //     $module = ModuleModel::findOrFail($id);
+    //     $deletedAttribute = 1;
+    //     $attributeNames = array(
+    //         'soft_delete' => $deletedAttribute
+    //     );
+
+    //     // dd($module);
+
+    //     DB::beginTransaction();
+
+
+    //     try {
+
+    //         $module->update($attributeNames);
+    //         //deleting the related routes
+    //         $ids = ModuleDetailsModel::where('module_id', $id)->pluck('id')->toarray();
+    //         ModuleDetailsModel::whereIn('id', $ids)->update($attributeNames);
+    //         DB::commit();
+    //         return response()->json("Deleted!");
+    //     } catch (\Exception $exception) {
+    //         DB::rollBack();
+    //         return response()->json(array('dbErrors' => $exception->getMessage()));
+    //     }
+    // }
+
+    /**
+     * @name getRouteByModule
+     * @role get route by module
+     * @param Request from array
+     * @return view with compact array
+     *
+     */
+
+
+    // public function getRouteByModule(Request $request)
+    // {
+    //     $id = $request->id;
+    //     //$modulesRoutes = ModuleDetailsModel::all('id','module_id','route','status')->where('status',0)->where('module_id',$id);
+    //     $modulesRoutes = ModuleDetailsModel::select('id', 'module_id', 'route', 'soft_delete')
+    //         ->where('module_id', $id)
+    //         ->where('soft_delete', 0)->get();
+    //     return response()->json($modulesRoutes, 200);
+    // }
+
+
+
+
+    /**
+     * @name getModuleDetailsByidAjax
+     * @role get details information of modules
+     * @param Request from array
+     * @return view with compact array
+     *
+     */
+
+    // public function getModuleDetailsByidAjax(Request $request)
+    // {
+    //     $id = $request->id;
+    //     $module = ModuleDetailsModel::findOrFail($id);
+    //     return response()->json($module);
+    // }
+
+
+    /**
+     * @name moduleDetailsUpdateAjax
+     * @role update module details record into the database
+     * @param Request from array
+     * @return view with compact array
+     *
+     */
+    //update
+    // public function moduleDetailsUpdateAjax(Request $request)
+    // {
+    //     $id = $request->id;
+    //     $module = ModuleDetailsModel::findOrFail($id);
+    //     $userName = Auth::user()->first_name;
+    //     $defaultValue = 0;
+
+    //     $attributeNames = array(
+    //         'module_id'                     => $request->module,
+    //         'route'                         => $request->route,
+    //         'created_by'                    => $userName,
+    //         'soft_delete'                   => $defaultValue
+    //     );
+
+    //     $validator = Validator::make($attributeNames, [
+    //         'module_id'                 => 'required',
+    //         'route'                     => 'required',
+    //         'created_by'                => 'required',
+    //         'soft_delete'               => 'required'
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
+    //     } else {
+    //         //work goes here
+    //         $module->update($attributeNames);
+    //         return response()->json("Success");
+    //     }
+    // }
+
+
+    /**
+     * @name moduleDetailsDeleteAjax
+     * @role soft delete individual module details record into the database
+     * @param Request from array
+     * @return view with compact array
+     *
+     */
+
+
+    // public function moduleDetailsDeleteAjax(Request $request)
+    // {
+    //     $id = $request->id;
+    //     // dd($id);
+    //     $module = ModuleDetailsModel::findOrFail($id);
+    //     $deletedAttribute = 1;
+    //     $attributeNames = array(
+    //         'soft_delete' => $deletedAttribute
+    //     );
+    //     try {
+    //         $module->update($attributeNames);
+    //         return response()->json("Success");
+
+    //     } catch (\Exception $exception) {
+
+    //         return response()->json(array('dbErrors' => $exception->getMessage()));
+    //     }
+    // }
+}
