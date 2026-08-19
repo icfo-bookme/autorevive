@@ -24,7 +24,7 @@ Route::group(['middleware' =>['auth','hasAccess']], function () {
    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 });
 
-Route::get('/', 'Shop\HomeController@index');
+Route::get('/', 'HomeController@index');
 Route::post('/getAllProducts', 'Shop\HomeController@getAllProducts');
 Route::get('/singleProductDetails/{id}', 'Shop\HomeController@singleProductDetails');
 Route::get('/checkout', 'Shop\HomeController@checkOut');

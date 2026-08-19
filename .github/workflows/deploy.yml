@@ -1,0 +1,69 @@
+name: Auto Deploy (PHP 7.4 - Autorevive)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install sshpass & rsync
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y sshpass rsync
+
+      # 1. Code upload (PHP 7.4 autorevive folder)
+      - name: Upload code to server
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PASS: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -p "$PASS" rsync -az \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            --exclude '.git' \
+            --exclude 'node_modules' \
+            --exclude 'vendor' \
+            --exclude '.env' \
+            --exclude 'public/storage' \
+            --exclude 'storage/app' \
+            --exclude 'storage/logs/*.log' \
+            ./ "$USER@$HOST:/var/www/autorevive/"
+
+      # 2. Server-এ Composer 2.2 LTS, Permissions & Cache Clear
+      - name: Post-deploy on server
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          password: ${{ secrets.DEPLOY_PASSWORD }}
+          port: 22
+          disable_host_key_checking: true
+          script: |
+            cd /var/www/autorevive
+
+            # PHP 7.4 Compatible Composer installer check/download
+            if [ ! -f composer.phar ]; then
+              curl -sS https://getcomposer.org/installer | php7.4 -- --2.2
+            fi
+
+            # Composer install (PHP 7.4 & Composer 2.2 LTS)
+            COMPOSER_ALLOW_SUPERUSER=1 php7.4 composer.phar install --no-dev --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
+
+            # File and Directory Permissions fix
+            sudo chown -R www-data:www-data /var/www/autorevive
+            sudo chmod -R 775 /var/www/autorevive/storage /var/www/autorevive/bootstrap/cache
+
+            # Laravel Cache Clear & Optimization
+            sudo -u www-data php7.4 artisan optimize:clear
+            sudo -u www-data php7.4 artisan config:cache
+            sudo -u www-data php7.4 artisan route:cache
+            sudo -u www-data php7.4 artisan view:cache
+
+            # Reload Services (Safe deployment)
+            sudo systemctl reload php7.4-fpm
+            sudo systemctl reload nginx
