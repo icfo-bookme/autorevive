@@ -100,7 +100,7 @@
                         {{-- <img src="{{asset('assets/images/computershop.jpg')}}" alt="logo icon" class="rounded-circle" style="max-width: 30%;"> --}}
                         <img src="{{asset('mazley_assets/img/logo/automax-lg.png')}}" width="200" alt="">
                     </div>
-                    <div class="card-title text-uppercase text-center py-3">Sign In</div>
+                    <div class="card-title text-uppercase text-center py-3">Login</div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
